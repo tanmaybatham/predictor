@@ -162,7 +162,7 @@ def getGraphAndTable(df, input_data, input_data2, customerName, productName, isJ
 
     # Define your layout here
     layout2 = go.Layout(
-        title='Correlation as per Actual Purchases'
+        title='Correlation as per Actual Usage'
     )
     corr_2 = computation_obj.getcorr_heatmap_user()
     df_corr2 = pd.DataFrame(corr_2)
@@ -223,14 +223,14 @@ def getGraphAndTable(df, input_data, input_data2, customerName, productName, isJ
         z2 = df_corr2.values
 
         # Subtract the two arrays element-wise
-        z_arr_diff = z1 - z2
+        z_arr_diff = abs(z1 - z2)
 
         # Create a copy of the difference array
         z_arr_diff_1 = np.copy(z_arr_diff)
 
         # Replace values greater than 0 with 1
-        z_arr_diff_1[z_arr_diff_1 > 0.05] = 1
-        z_arr_diff_1[z_arr_diff_1 <= 0.05] = 0
+        z_arr_diff_1[z_arr_diff_1 > 0.4] = 1
+        z_arr_diff_1[z_arr_diff_1 <= 0.4] = 0
         colorscale = [(0, '#B7FFBF'), (1, '#BC544B')]
 
         # Create a heatmap using Plotly
@@ -241,7 +241,7 @@ def getGraphAndTable(df, input_data, input_data2, customerName, productName, isJ
                               colorscale=colorscale)
 
         # Create a layout for the plot
-        layout3 = go.Layout(title='Detected anomalies in ISV assumptions and actual purchases')
+        layout3 = go.Layout(title='Detected anomalies in ISV assumptions and actual usage')
 
         # Combine the heatmap and layout into a figure
         fig3 = go.Figure(data=[heatmap3], layout=layout3)

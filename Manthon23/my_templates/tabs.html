@@ -34,12 +34,24 @@
 </div>
 
 <div id="tab1" class="tabcontent" style="padding-left:160px;padding-right:160px;">
-  <div id="plot">
-     <!-- <p><b>Heat Map From Market</b></p> -->
-      {{ plot|safe }}</div>
-  <div id="plot2">
-      <!-- <p><b>Heat Map By ISV</b></p> -->
-      {{ plot2|safe }}</div>
+  <div style="padding-top:50px;">
+  <table>
+    <tr>
+        <td>
+            <div id="plot" style="width:600px">
+                  <!-- <p><b>Heat Map From Market</b></p> -->
+                  {{ plot|safe }}
+            </div>
+        </td>
+        <td>
+            <div id="plot2" style="width:600px">
+              <!-- <p><b>Heat Map By ISV</b></p> -->
+              {{ plot2|safe }}
+            </div>
+        </td>
+    </tr>
+</table>
+</div>
 </div>
 
 

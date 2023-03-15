@@ -91,10 +91,13 @@ class Computation:
             recommendataions_list = [(recommend_item, usage) for usage, recommend_item in possible_usage]
             return recommendataions_list
 
-        assumed_correlation = pd.read_csv('data/isv-projected-product-corr-mri50-resp-90.csv',
+        assumed_correlation = pd.read_csv('data/assumed correlation2.csv',
                                           encoding='unicode_escape', index_col=0)
+        
+        assumed_correlation = ((assumed_correlation - 50) / 50)
 
-        corr_user = assumed_correlation.corr(method='pearson')
+
+        corr_user = assumed_correlation
         self.corr_user = corr_user
 
         def recommendation_phase_CustomerISV(product):

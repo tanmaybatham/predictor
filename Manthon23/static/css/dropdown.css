@@ -423,3 +423,38 @@ body {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+form {
+  font-family: "Open Sans", verdana, arial, sans-serif;
+  width: 350px;
+  height: 220px;
+  margin: 0 auto;
+  padding: 40px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+input[type="text"],
+input[type="password"] {
+  display: block;
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 40px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+input[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #242a75;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-bottom: 10px;
+  font-family: "Open Sans", verdana, arial, sans-serif;
+}

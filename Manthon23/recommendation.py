@@ -135,19 +135,19 @@ class Computation:
         b = recommendation_phase_CustomerISV(tp)
         if a != -1:
 
-            dfResult = pd.DataFrame(columns=['Customer Name', 'Predicted Score(Based on Actual Usage)'])
-            dfResult_isv = pd.DataFrame(columns=['Customer Name', 'Predicted Score(Based on Actual Usage)'])
+            dfResult = pd.DataFrame(columns=['Customer Name', 'Prediction Score(Based on Actual Usage)'])
+            dfResult_isv = pd.DataFrame(columns=['Customer Name', 'Prediction Score(Based on Actual Usage)'])
             print('For customer : ', tc)
             for webseries, weights in a:
-                new_row = {'Customer Name': webseries, 'Predicted Score(Based on Actual Usage)': round(weights, 2)}
+                new_row = {'Customer Name': webseries, 'Prediction Score(Based on Actual Usage)': round(weights, 2)}
 
                 dfResult = dfResult.append(new_row, ignore_index=True)
             for webseries_isv, weights_isv in b:
-                new_row_isv = {'Customer Name': webseries_isv, 'Predicted Score(Based on Actual Usage)': round(weights_isv, 2)}
+                new_row_isv = {'Customer Name': webseries_isv, 'Prediction Score(Based on Actual Usage)': round(weights_isv, 2)}
 
                 dfResult_isv = dfResult_isv.append(new_row_isv, ignore_index=True)
 
-        dfResult_isv.set_axis(['Customer Name', 'Predicted Score(Based on ISV Assumption)'], axis='columns', inplace=True)
+        dfResult_isv.set_axis(['Customer Name', 'Prediction Score(Based on ISV Assumption)'], axis='columns', inplace=True)
 
         Customer_matrix_UII4 = Customer_matrix_UII2.copy()
         dataset = Customer_matrix_UII2
@@ -188,7 +188,7 @@ class Computation:
         prodffinal_1 = pd.merge(dfnew, prodf, on='Product Name')
         prodffinal_2 = pd.merge(prodffinal_1, dfResult_isv2, on='Product Name')
         self.prodffinal_2 = prodffinal_2
-        prodffinal_2.set_axis(['Product Name', 'Actual Score', 'Predicted Score(Based on Actual Usage)','Predicted Score(Based on ISV Assumption)'], axis='columns', inplace=True)
+        prodffinal_2.set_axis(['Product Name', 'Actual Score', 'Prediction Score(Based on Actual Usage)','Prediction Score(Based on ISV Assumption)'], axis='columns', inplace=True)
 
     def values(prodffinal_2, dffinal_2, corr_user, corr_):
         return prodffinal_2, dffinal_2, corr_user, corr_

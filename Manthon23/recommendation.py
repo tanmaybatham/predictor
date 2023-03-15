@@ -48,13 +48,13 @@ class Computation:
 
         dfnew = round(Product_matrix_UII2[tc].reset_index(), 2)
         print("my tc", tc)
-        dfnew.set_axis(['Product Name', 'Actual Usage'], axis='columns', inplace=True)
+        dfnew.set_axis(['Product Name', 'Actual Score'], axis='columns', inplace=True)
 
         Customer_matrix_UII = Product_matrix_UII.copy()
         Customer_matrix_UII = Customer_matrix_UII.T
 
         dfnew_customers = round(Product_matrix_UII2.T[tp].reset_index(), 2)
-        dfnew_customers.set_axis(['Customer Name', 'Actual Usage'], axis='columns', inplace=True)
+        dfnew_customers.set_axis(['Customer Name', 'Actual Score'], axis='columns', inplace=True)
 
         corr_ = Product_matrix_UII2.T.corr(method='pearson')
         self.corr_ = corr_
@@ -135,19 +135,19 @@ class Computation:
         b = recommendation_phase_CustomerISV(tp)
         if a != -1:
 
-            dfResult = pd.DataFrame(columns=['Customer Name', 'Predicted Usage'])
-            dfResult_isv = pd.DataFrame(columns=['Customer Name', 'Predicted Usage'])
+            dfResult = pd.DataFrame(columns=['Customer Name', 'Predicted Score(Based on Actual Usage)'])
+            dfResult_isv = pd.DataFrame(columns=['Customer Name', 'Predicted Score(Based on Actual Usage)'])
             print('For customer : ', tc)
             for webseries, weights in a:
-                new_row = {'Customer Name': webseries, 'Predicted Usage': round(weights, 2)}
+                new_row = {'Customer Name': webseries, 'Predicted Score(Based on Actual Usage)': round(weights, 2)}
 
                 dfResult = dfResult.append(new_row, ignore_index=True)
             for webseries_isv, weights_isv in b:
-                new_row_isv = {'Customer Name': webseries_isv, 'Predicted Usage': round(weights_isv, 2)}
+                new_row_isv = {'Customer Name': webseries_isv, 'Predicted Score(Based on Actual Usage)': round(weights_isv, 2)}
 
                 dfResult_isv = dfResult_isv.append(new_row_isv, ignore_index=True)
 
-        dfResult_isv.set_axis(['Customer Name', 'ISV Predicted Usage'], axis='columns', inplace=True)
+        dfResult_isv.set_axis(['Customer Name', 'Predicted Score(Based on ISV Assumption)'], axis='columns', inplace=True)
 
         Customer_matrix_UII4 = Customer_matrix_UII2.copy()
         dataset = Customer_matrix_UII2
@@ -188,7 +188,7 @@ class Computation:
         prodffinal_1 = pd.merge(dfnew, prodf, on='Product Name')
         prodffinal_2 = pd.merge(prodffinal_1, dfResult_isv2, on='Product Name')
         self.prodffinal_2 = prodffinal_2
-        prodffinal_2.set_axis(['Product Name', 'Actual Usage', 'Predicted Usage','ISV Predicted Usage'], axis='columns', inplace=True)
+        prodffinal_2.set_axis(['Product Name', 'Actual Score', 'Predicted Score(Based on Actual Usage)','Predicted Score(Based on ISV Assumption)'], axis='columns', inplace=True)
 
     def values(prodffinal_2, dffinal_2, corr_user, corr_):
         return prodffinal_2, dffinal_2, corr_user, corr_

@@ -180,25 +180,25 @@ def getGraphAndTable(df, input_data, input_data2, customerName, productName, isJ
     table = my_df.to_html(classes='table table-striped')
     table2 = my_df2.to_html(classes='table table-striped')
     # Create the trace for each line
-    trace1 = go.Scatter(x=my_df['Product Name'], y=my_df['Predicted Usage'], mode='lines', name='Predicted Usage')
-    trace2 = go.Scatter(x=my_df['Product Name'], y=my_df['ISV Predicted Usage'], mode='lines', name='ISV Predicted Usage')
-    trace3 = go.Scatter(x=my_df['Product Name'], y=my_df['Actual Usage'], mode='lines', name='Actual Usage')
+    trace1 = go.Scatter(x=my_df['Product Name'], y=my_df['Predicted Score(Based on Actual Usage)'], mode='lines', name='Predicted Score(Based on Actual Usage)')
+    trace2 = go.Scatter(x=my_df['Product Name'], y=my_df['Predicted Score(Based on ISV Assumption)'], mode='lines', name='Predicted Score(Based on ISV Assumption)')
+    trace3 = go.Scatter(x=my_df['Product Name'], y=my_df['Actual Score'], mode='lines', name='Actual Score')
 
 
     # Create the layout
-    layout1 = go.Layout(title='Usage Comparison', width=1350, xaxis=dict(title='Product Name'), yaxis=dict(title='Usage'))
+    layout1 = go.Layout(width=1350, xaxis=dict(title='Product Name'), yaxis=dict(title='Usage Score'))
 
     # Create the figure object and add the traces and layout
     fig_graph1 = go.Figure(data=[trace1, trace2,trace3], layout=layout1)
 
-    trace1_cust = go.Scatter(x=my_df2['Customer Name'], y=my_df2['Predicted Usage'], mode='lines',
-                             name='Predicted Usage')
-    trace2_cust = go.Scatter(x=my_df2['Customer Name'], y=my_df2['ISV Predicted Usage'], mode='lines',
-                             name='ISV Predicted Usage')
-    trace3_cust = go.Scatter(x=my_df2['Customer Name'], y=my_df2['Actual Usage'], mode='lines', name='Actual Usage')
+    trace1_cust = go.Scatter(x=my_df2['Customer Name'], y=my_df2['Predicted Score(Based on Actual Usage)'], mode='lines',
+                             name='Predicted Score(Based on Actual Usage)')
+    trace2_cust = go.Scatter(x=my_df2['Customer Name'], y=my_df2['Predicted Score(Based on ISV Assumption)'], mode='lines',
+                             name='Predicted Score(Based on ISV Assumption)')
+    trace3_cust = go.Scatter(x=my_df2['Customer Name'], y=my_df2['Actual Score'], mode='lines', name='Actual Score')
 
     # Create the layout
-    layout2 = go.Layout(title='Usage Comparison', width=1350, xaxis=dict(title='Customer Name'), yaxis=dict(title='Usage'))
+    layout2 = go.Layout(width=1350, xaxis=dict(title='Customer Name'), yaxis=dict(title='Usage Score'))
 
     # Create the figure object and add the traces and layout
     fig_graph2 = go.Figure(data=[trace1_cust, trace2_cust, trace3_cust], layout=layout2)

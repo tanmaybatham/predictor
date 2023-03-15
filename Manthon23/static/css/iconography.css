@@ -1,0 +1,36 @@
+.qtm-icon-xsmall {
+    --icon-size-value: var(--icon-xsmall-size);
+    font-size: var(--icon-size-value) !important;
+    width: var(--icon-size-value) !important;
+    height: var(--icon-size-value) !important
+}
+.qtm-icon-small {
+    --icon-size-value: var(--icon-small-size);
+    font-size: var(--icon-size-value) !important;
+    width: var(--icon-size-value) !important;
+    height: var(--icon-size-value) !important
+}
+.qtm-icon-medium {
+    --icon-size-value: var(--icon-medium-size);
+    font-size: var(--icon-size-value) !important;
+    width: var(--icon-size-value) !important;
+    height: var(--icon-size-value) !important
+}
+.qtm-icon-large {
+    --icon-size-value: var(--icon-large-size);
+    font-size: var(--icon-size-value) !important;
+    width: var(--icon-size-value) !important;
+    height: var(--icon-size-value) !important
+}
+.qtm-icon-xlarge {
+    --icon-size-value: var(--icon-xlarge-size);
+    font-size: var(--icon-size-value) !important;
+    width: var(--icon-size-value) !important;
+    height: var(--icon-size-value) !important
+}
+.qtm-icon-xxlarge {
+    --icon-size-value: var(--icon-xxlarge-size);
+    font-size: var(--icon-size-value) !important;
+    width: var(--icon-size-value) !important;
+    height: var(--icon-size-value) !important
+}

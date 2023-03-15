@@ -1,0 +1,9 @@
+.qtm-dropdown-select:not(.qtm-disabled) .qtm-dropdown-trigger input[type=text] {
+    cursor: pointer
+}
+.qtm-dropdown-select .qtm-disabled .qtm-dropdown-trigger input[type=text] {
+    cursor: not-allowed
+}
+.qtm-dropdown-select .qtm-dropdown-overlay {
+    min-width: 100%
+}

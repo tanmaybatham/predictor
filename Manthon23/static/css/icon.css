@@ -1,0 +1,20 @@
+.qtm-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.qtm-icon .material-icons {
+    font-size: inherit;
+}
+.qtm-icon .material-icons-outlined {
+    font-size: inherit;
+}
+.qtm-icon .material-icons-round {
+    font-size: inherit;
+}
+.qtm-icon .material-icons-sharp {
+    font-size: inherit;
+}
+.qtm-icon .material-icons-two-tone {
+    font-size: inherit;
+}

@@ -1,0 +1,8 @@
+Product Name,Anesthesia Machine,Azurion System,CT Scanner,Ultrasound System,Lumify Transducer,MRI Scanner,Respiro Respirator
+Anesthesia Machine,100,31,47,54,62,48,25
+Azurion System,31,100,40,28,34,56,73
+CT Scanner,47,40,100,46,54,70,40
+Ultrasound System,54,28,46,100,50,85,39
+Lumify Transducer,62,34,54,50,100,62,41
+MRI Scanner,48,56,70,85,62,100,51
+Respiro Respirator,25,73,40,39,41,51,100

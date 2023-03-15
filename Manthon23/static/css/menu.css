@@ -1,0 +1,196 @@
+.qtm-menu-item-list {
+    display: block;
+}
+.qtm-menu-item-list.qtm-scrollable {
+    --nb-visible-items: 5;
+    --menu-item-height: var(--itemlist-item-medium-height);
+    overflow-y: scroll;
+    max-height: calc(var(--menu-item-height) * (var(--nb-visible-items) + 1/2));
+}
+.qtm-menu-item-list.qtm-scrollable.qtm-small {
+    --menu-item-height: var(--itemlist-item-small-height);
+}
+.qtm-menu-item-list.qtm-scrollable.qtm-medium {
+    --menu-item-height: var(--itemlist-item-medium-height);
+}
+.qtm-menu-item-list.qtm-scrollable.qtm-large {
+    --menu-item-height: var(--itemlist-item-large-height);
+}
+.qtm-menu-item {
+    position: relative;
+}
+.qtm-menu-item:before {
+    background-color: var(--itemlist-item-activebar-background-color);
+    width: var(--itemlist-item-activebar-width);
+    border-top-right-radius: var(--itemlist-item-activebar-border-right-radius);
+    border-bottom-right-radius: var(--itemlist-item-activebar-border-right-radius);
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    height: 100%;
+    content: '';
+    display: none;
+}
+.qtm-menu-item.qtm-active:before {
+    display: block;
+}
+.qtm-menu-item.qtm-disabled:before {
+    display: none;
+}
+.qtm-menu-item.qtm-disabled * {
+    color: var(--itemlist-item-disabled-label-color) !important;
+    background-color: var(--itemlist-item-disabled-background-color) !important;
+    cursor: not-allowed !important;
+}
+.qtm-menu-item.qtm-collapsed .qtm-submenu-item-list {
+    display: none;
+}
+.qtm-menu-item.qtm-active .qtm-menu-item-label:not(:hover), .qtm-menu-item.qtm-active .qtm-submenu-item.qtm-active:not(:hover) {
+    background-color: var(--itemlist-item-active-background-color);
+}
+.qtm-menu-item.qtm-active .qtm-menu-item-label:focus:after, .qtm-menu-item.qtm-active .qtm-submenu-item.qtm-active:focus:after {
+    display: none;
+}
+.qtm-menu-item.qtm-active .qtm-menu-item-label {
+    color: var(--itemlist-item-active-label-color);
+}
+.qtm-menu-item.qtm-active .qtm-submenu-item.qtm-active {
+    color: var(--itemlist-subitem-active-label-color);
+}
+.qtm-menu-item.qtm-active:not(.qtm-collapsed) .qtm-menu-item-label:not(:only-child) {
+    background-color: transparent;
+}
+.qtm-menu-item-label .qtm-icon:first-child:not(:only-child) {
+    margin-right: var(--itemlist-item-icon-left-margin-right);
+}
+.qtm-menu-item-label .qtm-icon:last-child:not(:only-child) {
+    margin-left: auto;
+}
+.qtm-menu-item-label {
+    color: var(--itemlist-item-label-color);
+    padding-left: calc(var(--itemlist-item-padding-horizontal) + var(--itemlist-item-activebar-width));
+    padding-right: var(--itemlist-item-padding-horizontal);
+}
+.qtm-menu-item-label, .qtm-submenu-item {
+    font-family: var(--itemlist-item-font-family);
+    font-weight: var(--itemlist-item-font-weight);
+    background-color: var(--itemlist-item-background-color);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+.qtm-menu-item-label:after, .qtm-submenu-item:after {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-width: var(--itemlist-item-focus-border-width);
+    border-style: var(--itemlist-item-focus-border-type);
+    border-color: var(--itemlist-item-focus-border-color);
+    border-radius: var(--itemlist-item-focus-border-radius);
+    content: "";
+    display: none;
+}
+.qtm-menu-item-label:focus, .qtm-submenu-item:focus {
+    outline: none;
+}
+.qtm-menu-item-label:focus-visible:after, .qtm-submenu-item:focus-visible:after {
+    display: block;
+}
+.qtm-menu-item-label:hover, .qtm-submenu-item:hover {
+    background-color: var(--itemlist-item-hover-background-color);
+}
+.qtm-menu-item-label:active, .qtm-submenu-item:active {
+    background-color: var(--itemlist-item-pressed-background-color);
+}
+.qtm-menu-item-list .qtm-menu-item-label {
+    min-height: var(--itemlist-item-medium-height);
+    font-size: var(--itemlist-item-medium-font-size);
+    line-height: var(--itemlist-item-medium-line-height);
+    padding-top: var(--itemlist-item-medium-padding-vertical);
+    padding-bottom: var(--itemlist-item-medium-padding-vertical);
+}
+.qtm-menu-item-list .qtm-menu-item-label .qtm-icon {
+    font-size: var(--itemlist-item-medium-icon-size);
+    width: var(--itemlist-item-medium-icon-size);
+    height: var(--itemlist-item-medium-icon-size);
+}
+.qtm-menu-item-list.qtm-small .qtm-menu-item-label {
+    min-height: var(--itemlist-item-small-height);
+    font-size: var(--itemlist-item-small-font-size);
+    line-height: var(--itemlist-item-small-line-height);
+    padding-top: var(--itemlist-item-small-padding-vertical);
+    padding-bottom: var(--itemlist-item-small-padding-vertical);
+}
+.qtm-menu-item-list.qtm-small .qtm-menu-item-label .qtm-icon {
+    font-size: var(--itemlist-item-small-icon-size);
+    width: var(--itemlist-item-small-icon-size);
+    height: var(--itemlist-item-small-icon-size);
+}
+.qtm-menu-item-list.qtm-medium .qtm-menu-item-label {
+    min-height: var(--itemlist-item-medium-height);
+    font-size: var(--itemlist-item-medium-font-size);
+    line-height: var(--itemlist-item-medium-line-height);
+    padding-top: var(--itemlist-item-medium-padding-vertical);
+    padding-bottom: var(--itemlist-item-medium-padding-vertical);
+}
+.qtm-menu-item-list.qtm-medium .qtm-menu-item-label .qtm-icon {
+    font-size: var(--itemlist-item-medium-icon-size);
+    width: var(--itemlist-item-medium-icon-size);
+    height: var(--itemlist-item-medium-icon-size);
+}
+.qtm-menu-item-list.qtm-large .qtm-menu-item-label {
+    min-height: var(--itemlist-item-large-height);
+    font-size: var(--itemlist-item-large-font-size);
+    line-height: var(--itemlist-item-large-line-height);
+    padding-top: var(--itemlist-item-large-padding-vertical);
+    padding-bottom: var(--itemlist-item-large-padding-vertical);
+}
+.qtm-menu-item-list.qtm-large .qtm-menu-item-label .qtm-icon {
+    font-size: var(--itemlist-item-large-icon-size);
+    width: var(--itemlist-item-large-icon-size);
+    height: var(--itemlist-item-large-icon-size);
+}
+.qtm-submenu-item-list {
+    display: block;
+}
+.qtm-submenu-item {
+    color: var(--itemlist-subitem-label-color);
+    padding-right: var(--itemlist-item-padding-horizontal);
+}
+.qtm-menu-item-list .qtm-submenu-item {
+    min-height: var(--itemlist-subitem-medium-height);
+    font-size: var(--itemlist-item-medium-font-size);
+    line-height: var(--itemlist-item-medium-line-height);
+    padding-top: var(--itemlist-subitem-medium-padding-vertical);
+    padding-bottom: var(--itemlist-subitem-medium-padding-vertical);
+    padding-left: calc(var(--itemlist-item-padding-horizontal) + var(--itemlist-item-activebar-width) + var(--itemlist-item-medium-icon-size) + var(--itemlist-item-icon-left-margin-right));
+}
+.qtm-menu-item-list.qtm-small .qtm-submenu-item {
+    min-height: var(--itemlist-subitem-small-height);
+    font-size: var(--itemlist-item-small-font-size);
+    line-height: var(--itemlist-item-small-line-height);
+    padding-top: var(--itemlist-subitem-small-padding-vertical);
+    padding-bottom: var(--itemlist-subitem-small-padding-vertical);
+    padding-left: calc(var(--itemlist-item-padding-horizontal) + var(--itemlist-item-activebar-width) + var(--itemlist-item-small-icon-size) + var(--itemlist-item-icon-left-margin-right));
+}
+.qtm-menu-item-list.qtm-medium .qtm-submenu-item {
+    min-height: var(--itemlist-subitem-medium-height);
+    font-size: var(--itemlist-item-medium-font-size);
+    line-height: var(--itemlist-item-medium-line-height);
+    padding-top: var(--itemlist-subitem-medium-padding-vertical);
+    padding-bottom: var(--itemlist-subitem-medium-padding-vertical);
+    padding-left: calc(var(--itemlist-item-padding-horizontal) + var(--itemlist-item-activebar-width) + var(--itemlist-item-medium-icon-size) + var(--itemlist-item-icon-left-margin-right));
+}
+.qtm-menu-item-list.qtm-large .qtm-submenu-item {
+    min-height: var(--itemlist-subitem-large-height);
+    font-size: var(--itemlist-item-large-font-size);
+    line-height: var(--itemlist-item-large-line-height);
+    padding-top: var(--itemlist-subitem-large-padding-vertical);
+    padding-bottom: var(--itemlist-subitem-large-padding-vertical);
+    padding-left: calc(var(--itemlist-item-padding-horizontal) + var(--itemlist-item-activebar-width) + var(--itemlist-item-large-icon-size) + var(--itemlist-item-icon-left-margin-right));
+}

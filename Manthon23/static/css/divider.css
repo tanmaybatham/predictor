@@ -1,0 +1,30 @@
+.qtm-divider {
+    width: 100%;
+    display: block;
+    border-radius: var(--divider-rounded-radius);
+    background-color: var(--divider-color);
+}
+.qtm-divider.qtm-small {
+    height: var(--divider-small-height);
+}
+.qtm-divider, .qtm-divider.qtm-medium {
+    height: var(--divider-medium-height);
+}
+.qtm-divider.qtm-large {
+    height: var(--divider-large-height);
+}
+.qtm-divider.qtm-sharp {
+    border-radius: var(--divider-sharpe-radius);
+}
+.qtm-divider.qtm-vertical.qtm-small {
+    height: 100%;
+    width: var(--divider-small-height);
+}
+.qtm-divider.qtm-vertical, .qtm-divider.qtm-vertical.qtm-medium {
+    height: 100%;
+    width: var(--divider-medium-height);
+}
+.qtm-divider.qtm-vertical.qtm-large {
+    height: 100%;
+    width: var(--divider-large-height);
+}

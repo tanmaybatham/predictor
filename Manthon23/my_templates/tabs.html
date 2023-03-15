@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tabs.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/divider.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/drawer.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/slider.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dropdown.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dropdownSelect.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/multiselect.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/textInput.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/icon.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/iconography.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+<div>
+<div width="100%">
+    <a href="logout"><span class="material-symbols-outlined logout-link" title="Logout">logout</span></a>
+</div>
+<ul style="padding-left:160px;margin-left:160px;padding-right:160px;" class="qtm-tabs qtm-has-divider w-full fluid">
+  <li tabindex="0" class="qtm-tab qtm-active" style="width:300px;" onclick="openTab(event, 'tab1')">
+    <span>Correlation</span>
+  </li>
+  <li tabindex="1" class="qtm-tab" style="width:300px;" onclick="openTab(event, 'tab2')">
+    <span>Smart Picks</span>
+  </li>
+  <li tabindex="2" class="qtm-tab" style="width:300px;" onclick="openTab(event, 'tab3')">
+    <span>Customer Favorites</span>
+  </li>
+</ul>
+</div>
+
+<div id="tab1" class="tabcontent" style="padding-left:160px;padding-right:160px;">
+  <div id="plot">
+     <!-- <p><b>Heat Map From Market</b></p> -->
+      {{ plot|safe }}</div>
+  <div id="plot2">
+      <!-- <p><b>Heat Map By ISV</b></p> -->
+      {{ plot2|safe }}</div>
+</div>
+
+
+
+<div id="tab2" class="tabcontent" style="display:none;padding-left:160px;padding-right:160px;margin-top:40px;">
+  <div class="containerMain">
+    <div class="leftDiv1">
+         <label class="labelSpan"><b>Date</b></span></label>
+    </div>
+    <div class="leftDiv2">
+         <select id="dateForProductTab" class="searchBox" onchange="showSelectedOption(this, 'productName', 'plot_graphPrdName', null)">
+               <option value="0" disabled selected>Choose a time duration</option>
+               <option value="90">Last 3 Months</option>
+               <option value="180">Last 6 Months</option>
+               <option value="365">Last 12 Months</option>
+         </select>
+    </div>
+    <div class="rightDiv1">
+       <label class="labelSpan"><b>Product Name</b></label>
+    </div>
+    <div class="rightDiv2">
+          <input type="search" id="productName" class="searchBox" name="productName" value="{{ productName }}" placeholder="Search for a product" onkeyup="getSuggestions(this, 'suggestionsProductName', 'autocompleteProducts')"><i style="padding-left:5px;" class="material-icons non-clickable">search</i>
+          <div id="suggestionsProductName" class="fixed-size-div"></div>
+    </div>
+    </div>
+<div id="loaderPrd"></div>
+<div id="plot_graphPrdName">
+  <!-- <p><b>Heat Map By ISV</b></p> -->
+  <div>{{ plot_graph2|safe }}</div>
+<table>
+  {{ table2 | safe }}
+   </table>
+    </div>
+
+</div>
+
+<div id="tab3" class="tabcontent" style="display:none;padding-left:160px;margin-top:40px;padding-right:160px;">
+  <div class="containerMain">
+    <div class="leftDiv1">
+        <label class="labelSpan"><b>Date</b></span></label>
+    </div>
+    <div class="leftDiv2">
+         <select id="dateForCustomerTab" class="searchBox" onchange="showSelectedOption(this, 'customerName', 'plot_graphCustomerName', null)">
+                  <option value="0" disabled selected>Choose a time duration</option>
+                  <option value="90">Last 3 Months</option>
+                  <option value="180">Last 6 Months</option>
+                  <option value="365">Last 12 Months</option>
+         </select>
+    </div>
+    <div class="rightDiv1">
+       <label class="labelSpan"><b>Customer Name</b></label>
+    </div>
+    <div class="rightDiv2">
+         <input type="search" class="searchBox" id="customerName" name="customerName" value="{{ customerName }}" placeholder="Search for a customer" onkeyup="getSuggestions(this, 'suggestionsCustomerName', 'autocompleteCustomers')"><i style="padding-left:5px;" class="material-icons non-clickable">search</i>
+         <div id="suggestionsCustomerName" class="fixed-size-div"></div>
+    </div>
+  </div>
+  <div id="loaderCstmr"></div>
+   <div id="plot_graphCustomerName">
+    <!-- <p><b>Heat Map By ISV</b></p> -->
+    <div>{{ plot_graph1|safe }}</div>
+    <table>
+      {{ table | safe }}
+       </table>
+   </div>
+  </div>
+
+   <br/>
+
+</div>
+</div>
+  <footer>
+    <p>&copy; 2023 THALES. All rights reserved.</p>
+  </footer>
+
+ <script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <script>
+  var input = document.getElementById('productName');
+  
+  input.addEventListener('input', function() {
+    var value = input.value;
+    console.log(value);
+  });
+  </script>
+</html>

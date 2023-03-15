@@ -1,0 +1,138 @@
+.qtm-tabs {
+    display: flex;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    overflow: hidden;
+}
+.qtm-tabs::-webkit-scrollbar {
+    display: none;
+}
+.qtm-tabs.qtm-fluid .qtm-tab {
+    flex: 1 0 auto;
+}
+.qtm-tabs.qtm-scrollable {
+    overflow-x: auto;
+}
+.qtm-tabs.qtm-w-full {
+    width: 100%;
+}
+.qtm-tabs.qtm-h-full {
+    height: 100%;
+}
+.qtm-tabs.qtm-left {
+    justify-content: flex-start;
+}
+.qtm-tabs.qtm-center {
+    justify-content: center;
+}
+.qtm-tabs.qtm-right {
+    justify-content: flex-end;
+}
+.qtm-tabs.qtm-has-divider {
+    border-bottom-width: var(--tabs-divider-border-width);
+    border-bottom-style: solid;
+    border-bottom-color: var(--tabs-divider-border-color);
+}
+.qtm-tabs.qtm-tab-vertical .qtm-tab {
+    flex-direction: column;
+    padding-top: var(--tabs-tab-verticalalign-padding-vertical);
+    padding-bottom: var(--tabs-tab-verticalalign-padding-vertical);
+    padding-left: var(--tabs-tab-verticalalign-padding-horizontal);
+    padding-right: var(--tabs-tab-verticalalign-padding-horizontal);
+}
+.qtm-tabs.qtm-tab-vertical .qtm-tab .qtm-icon:first-child:not(:only-child) {
+    margin-right: 0;
+    margin-bottom: var(--tabs-tab-icon-margin);
+}
+.qtm-tabs.qtm-tab-vertical .qtm-tab .qtm-icon:last-child:not(:only-child) {
+    margin-left: 0;
+    margin-top: var(--tabs-tab-icon-margin);
+}
+.qtm-tabs .qtm-tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: var(--tabs-tab-padding-vertical);
+    padding-bottom: var(--tabs-tab-padding-vertical);
+    padding-left: var(--tabs-tab-padding-horizontal);
+    padding-right: var(--tabs-tab-padding-horizontal);
+    cursor: pointer;
+    background-color: var(--tabs-tab-background-color);
+    color: var(--tabs-tab-label-color);
+    font-family: var(--tabs-tab-font-family);
+    font-weight: var(--tabs-tab-font-weight);
+    position: relative;
+    outline: none;
+}
+.qtm-tabs .qtm-tab:after {
+    height: var(--tabs-tab-activebar-height);
+    background-color: var(--tabs-tab-activebar-background-color);
+    border-top-right-radius: var(--tabs-tab-activebar-border-radius);
+    border-top-left-radius: var(--tabs-tab-activebar-border-radius);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+    width: 100%;
+    display: none;
+}
+.qtm-tabs .qtm-tab.qtm-active {
+    color: var(--tabs-tab-active-label-color);
+}
+.qtm-tabs .qtm-tab.qtm-active:after {
+    display: block;
+}
+.qtm-tabs .qtm-tab.qtm-active.qtm-disabled:after {
+    display: none;
+}
+.qtm-tabs .qtm-tab:hover {
+    background-color: var(--tabs-tab-hover-background-color);
+}
+.qtm-tabs .qtm-tab.qtm-disabled {
+    color: var(--tabs-tab-disabled-label-color);
+    background-color: var(--tabs-tab-disabled-background-color);
+    cursor: not-allowed;
+}
+.qtm-tabs .qtm-tab:before {
+    border-width: var(--tabs-tab-focus-border-width);
+    border-style: var(--tabs-tab-focus-border-type);
+    border-color: var(--tabs-tab-focus-border-color);
+    border-radius: var(--tabs-tab-focus-border-radius);
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.qtm-tabs .qtm-tab:focus-visible:before {
+    display: block;
+    outline: none;
+}
+.qtm-tabs .qtm-tab:active {
+    background-color: var(--tabs-tab-pressed-background-color);
+}
+.qtm-tabs .qtm-tab.qtm-disabled:active {
+    background-color: var(--tabs-tab-disabled-background-color);
+}
+.qtm-tabs .qtm-tab .qtm-icon {
+    height: var(--tabs-tab-icon-size);
+    font-size: var(--tabs-tab-icon-size);
+    display: flex;
+}
+.qtm-tabs .qtm-tab .qtm-icon:first-child:not(:only-child) {
+    margin-right: var(--tabs-tab-icon-margin);
+}
+.qtm-tabs .qtm-tab .qtm-icon:last-child:not(:only-child) {
+    margin-left: var(--tabs-tab-icon-margin);
+}
+.qtm-tabs.qtm-small .qtm-tab {
+    min-height: var(--tabs-small-height);
+    font-size: var(--tabs-small-tab-font-size);
+}
+.qtm-tabs.qtm-medium .qtm-tab {
+    min-height: var(--tabs-medium-height);
+    font-size: var(--tabs-medium-tab-font-size);
+}

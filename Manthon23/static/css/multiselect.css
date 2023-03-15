@@ -1,0 +1,17 @@
+.qtm-multiselect .qtm-dropdown-trigger input[type=text] {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+.qtm-multiselect.qtm-disabled .qtm-dropdown-trigger input[type=text] {
+    cursor: not-allowed
+}
+.qtm-multiselect:not(.qtm-disabled) .qtm-dropdown-trigger input[type=text] {
+    cursor: pointer
+}
+.qtm-multiselect .qtm-dropdown-overlay {
+    min-width: 100%
+}
+.qtm-multiselect .qtm-menu-item .qtm-checkbox {
+    pointer-events: none
+}

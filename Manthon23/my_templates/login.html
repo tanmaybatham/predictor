@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Correlate Pro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dropdown.css') }}">
+    <style>
+      /* Add some basic styles for the login form */
+      form {
+        font-family: "Open Sans", verdana, arial, sans-serif;
+        width: 350px;
+        height: 220px;
+        margin: 0 auto;
+        padding: 40px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      input[type="text"],
+      input[type="password"] {
+        display: block;
+        width: 95%;
+        padding: 10px;
+        margin-bottom: 40px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      input[type="submit"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #242a75;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .error-message {
+        color: red;
+        font-size: 12px;
+        margin-bottom: 10px;
+        font-family: "Open Sans", verdana, arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <div style="background-color: #242a75; width: 350px; color: white; margin: 0 auto;
+        padding: 40px;font-size: 24px;text-align: center; font-family: "Open Sans", verdana, arial, sans-serif;">
+  Correlate-Pro
+</div>
+
+    <form action="login" method="post">
+      <div class="error-message" id="errorMessageDiv">
+        {{ error }}
+      </div>
+      <input type="text" class="spacer" id="username" name="username" placeholder="Username" required>
+      <input type="password" class="spacer" id="password" name="password" placeholder="Password" required>
+      <input type="submit" value="Login">
+    </form>
+    <footer>
+    <p>&copy; 2023 THALES. All rights reserved.</p>
+  </footer>
+  <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+  </body>
+</html>

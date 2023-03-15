@@ -156,12 +156,12 @@ def getGraphAndTable(df, input_data, input_data2, customerName, productName, isJ
 
     # Define your layout here
     layout = go.Layout(
-        title='Association with ISV Data Insights'
+        title='Correlation as per ISV Assumptions'
     )
 
     # Define your layout here
     layout2 = go.Layout(
-        title='Association through Usage Patterns'
+        title='Correlation as per Actual Purchases'
     )
     corr_2 = computation_obj.getcorr_heatmap_user()
     df_corr2 = pd.DataFrame(corr_2)

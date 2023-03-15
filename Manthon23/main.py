@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, jsonify, session, url_for, request,g
 from datetime import datetime, timedelta
+from plotly.subplots import make_subplots
 from functools import wraps
 from markupsafe import Markup
 import pandas as pd
@@ -180,13 +181,15 @@ def getGraphAndTable(df, input_data, input_data2, customerName, productName, isJ
     table2 = my_df2.to_html(classes='table table-striped')
     # Create the trace for each line
     trace1 = go.Scatter(x=my_df['Product Name'], y=my_df['Predicted Usage'], mode='lines', name='Predicted Usage')
-    trace2 = go.Scatter(x=my_df['Product Name'], y=my_df['Actual Usage'], mode='lines', name='Actual Usage')
+    trace2 = go.Scatter(x=my_df['Product Name'], y=my_df['ISV Predicted Usage'], mode='lines', name='ISV Predicted Usage')
+    trace3 = go.Scatter(x=my_df['Product Name'], y=my_df['Actual Usage'], mode='lines', name='Actual Usage')
+
 
     # Create the layout
     layout1 = go.Layout(title='Usage Comparison', width=1350, xaxis=dict(title='Product Name'), yaxis=dict(title='Usage'))
 
     # Create the figure object and add the traces and layout
-    fig_graph1 = go.Figure(data=[trace1, trace2], layout=layout1)
+    fig_graph1 = go.Figure(data=[trace1, trace2,trace3], layout=layout1)
 
     trace1_cust = go.Scatter(x=my_df2['Customer Name'], y=my_df2['Predicted Usage'], mode='lines',
                              name='Predicted Usage')
@@ -214,7 +217,37 @@ def getGraphAndTable(df, input_data, input_data2, customerName, productName, isJ
             html_content = f'<div id="plot_graphPrdNameJson">{Markup(plot_graph)}</div><table>{Markup(table)}</table>'
         return html_content
     else:
+        # retrieve data from figure 1 and both figures' z-axis
+        # Compute the difference between the z-axis data of Figure 1 and Figure 2
+        z1 = df_corr.values
+        z2 = df_corr2.values
+
+        # Subtract the two arrays element-wise
+        z_arr_diff = z1 - z2
+
+        # Create a copy of the difference array
+        z_arr_diff_1 = np.copy(z_arr_diff)
+
+        # Replace values greater than 0 with 1
+        z_arr_diff_1[z_arr_diff_1 > 0.05] = 1
+        z_arr_diff_1[z_arr_diff_1 <= 0.05] = 0
+        colorscale = [(0, '#B7FFBF'), (1, '#BC544B')]
+
+        # Create a heatmap using Plotly
+        zValues = z_arr_diff_1
+        xValues = df_corr.columns.tolist()
+        yValues = df_corr.index.tolist()
+        heatmap3 = go.Heatmap(z=zValues, x=xValues, y=yValues,
+                              colorscale=colorscale)
+
+        # Create a layout for the plot
+        layout3 = go.Layout(title='Detected anomalies in ISV assumptions and actual purchases')
+
+        # Combine the heatmap and layout into a figure
+        fig3 = go.Figure(data=[heatmap3], layout=layout3)
+
         html_fragment = render_template('tabs.html', plot=fig.to_html(full_html=False), plot2=fig2.to_html(full_html=False),
+                                        diff_plot=fig3.to_html(full_html=True),
                                     plot_graph2=fig_graph2.to_html(full_html=True),
                                     plot_graph1=fig_graph1.to_html(full_html=True), customerName=customerName,
                                     productName=productName, table=table, table2=table2)

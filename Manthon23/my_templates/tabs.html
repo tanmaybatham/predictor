@@ -28,7 +28,7 @@
     <span>Smart Insights</span>
   </li>
   <li tabindex="2" class="qtm-tab" style="width:300px;" onclick="openTab(event, 'tab3')">
-    <span>Customer Preference</span>
+    <span>Smart Preference</span>
   </li>
 </ul>
 </div>
@@ -38,18 +38,27 @@
   <table>
     <tr>
         <td>
-            <div id="plot" style="width:600px">
+            <div id="plot" style="width:600px;">
                   <!-- <p><b>Heat Map From Market</b></p> -->
                   {{ plot|safe }}
             </div>
         </td>
         <td>
-            <div id="plot2" style="width:600px">
+            <div id="plot2" style="width:600px;">
               <!-- <p><b>Heat Map By ISV</b></p> -->
               {{ plot2|safe }}
             </div>
         </td>
     </tr>
+      <tr>
+          <td colspan="2">
+              <div id="plot3">
+                  <!-- <p><b>Heat Map From Market</b></p> -->
+                  {{ diff_plot|safe }}
+              </div>
+
+          </td>
+      </tr>
 </table>
 </div>
 </div>

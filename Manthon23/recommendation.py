@@ -8,7 +8,7 @@ import warnings
 class Computation:
     def _init_(self):
         self.prodffinal_1 = pd.DataFrame()
-        self.dffinal_2 = pd.DataFrame()
+        self.prodffinal_2 = pd.DataFrame()
         self.corr_user = pd.DataFrame()
         self.corr_ = pd.DataFrame()
         self.tc = ""
@@ -116,7 +116,7 @@ class Computation:
                     continue
                 for item in dataset[other].index:
                     totals.setdefault(item, 0)
-                    totals[item] += dataset[other][item] * sim
+                    totals[item] += dataset[other][item] * sim 
                     # sum of similarities
                     simSums.setdefault(item, 0)  # setdefault is key value
                     simSums[item] += sim
@@ -161,26 +161,43 @@ class Computation:
                     print('For product : ', tp)
                     for webseries, weights in a:
 
-                        if dataset[tp][webseries] < 50:
                             Customer_matrix_UII4[tp][webseries] = round(weights, 2)
 
+
+        Customer_matrix_UII5 = Customer_matrix_UII2.copy()
+        dataset = Customer_matrix_UII2
+
+        for tp in Customer_matrix_UII2.columns:
+            if tp in dataset.columns:
+
+                a = recommendation_phase_CustomerISV(tp)
+                if a != -1:
+
+                    print('For product : ', tp)
+                    for webseries, weights in a:
+
+                            Customer_matrix_UII5[tp][webseries] = round(weights, 2)
+
         df_allpred = Customer_matrix_UII4.copy()
-        dffinal_1 = pd.merge(dfnew_customers, dfResult_isv, on='Customer Name')
-        dffinal_2 = pd.merge(dffinal_1, dfResult, on='Customer Name')
+        dffinal_1 = pd.merge(dfnew_customers,dfResult, on='Customer Name')
+        dffinal_2 = pd.merge(dffinal_1,dfResult_isv , on='Customer Name')
         self.dffinal_2 = dffinal_2
         prodf = round(df_allpred.T[tc].reset_index(), 2)
-        prodffinal_1 = pd.merge(dfnew, prodf, on='Product Name')
-        self.prodffinal_1 = prodffinal_1
-        prodffinal_1.set_axis(['Product Name', 'Actual Usage', 'Predicted Usage'], axis='columns', inplace=True)
+        dfResult_isv2 = round(Customer_matrix_UII5.T[tc].reset_index(), 2)
 
-    def values(prodffinal_1, dffinal_2, corr_user, corr_):
-        return prodffinal_1, dffinal_2, corr_user, corr_
+        prodffinal_1 = pd.merge(dfnew, prodf, on='Product Name')
+        prodffinal_2 = pd.merge(prodffinal_1, dfResult_isv2, on='Product Name')
+        self.prodffinal_2 = prodffinal_2
+        prodffinal_2.set_axis(['Product Name', 'Actual Usage', 'Predicted Usage','ISV Predicted Usage'], axis='columns', inplace=True)
+
+    def values(prodffinal_2, dffinal_2, corr_user, corr_):
+        return prodffinal_2, dffinal_2, corr_user, corr_
 
     def getcorr_heatmap_user(self):
         return self.corr_user
 
     def getproducts(self):
-        return self.prodffinal_1
+        return self.prodffinal_2
 
     def getcustomers(self):
 

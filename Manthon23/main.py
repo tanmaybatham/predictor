@@ -114,7 +114,7 @@ def prdUsageComparison():
 
     if customerName is not None and customerName != '':
         input_data = str(customerName)
-        input_data2 = 'Anesthesia Machine'
+        input_data2 = 'Ultrasound System'
 
     if productName is not None and productName != '':
         input_data2 = str(productName)
@@ -137,7 +137,7 @@ def tabs():
     product_names = df['Product Name'].unique()
 
     customerName = customer_names[0]
-    productName = product_names[0]
+    productName = 'Ultrasound System'
     input_data = customerName
     input_data2 = productName
 
